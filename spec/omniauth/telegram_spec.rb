@@ -57,6 +57,7 @@ RSpec.describe Omniauth::Telegram do
     strategy = OmniAuth::Strategies::Telegram.new(app)
     strategy.options.bot_secret = 'some-secret'
     strategy.options.bot_name = 'some-name'
+    strategy.options.expiration_time = 86400
     response = strategy.call!(env)
 
     expect(response).to eq([302, {"Location"=>"/auth/failure?message=session_expired&strategy=telegram"}, ["302 Moved"]])
